@@ -1,7 +1,8 @@
 class Product {
-  constructor(name, description) {
+  constructor(name, description, price) {
     this.name = name;
     this.description = description;
+    this.price = parseFloat(price);
   }
 
   static #products = [];
@@ -23,10 +24,7 @@ class Product {
   }
 
   static getLast() {
-    if (!this.#products.length) {
-      return;
-    }
-
+    if (!this.#products.length) return;
     return this.#products[this.#products.length - 1];
   }
 }

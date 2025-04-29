@@ -1,0 +1,37 @@
+<div class="card">
+    <img
+      class="card__image"
+      src="https://via.placeholder.com/150"
+      alt="<%= product.name %>"
+    />
+    <h3 class="card__title"><%= product.name %></h3>
+    <p class="card__description"><%= product.description %></p>
+    <p class="card__price">Price: $<%= product.price.toFixed(2) %></p>
+    <form action="/products/add" method="POST">
+      <input type="hidden" name="name" value="<%= product.name %>" />
+      <button type="submit">Add to cart</button>
+    </form>
+    <button onclick="deleteProduct('<%= product.name %>')">Delete</button>
+  </div>
+  
+  <ul>
+    <% products.forEach(product => { %>
+      <%- include('partials/card', { product }) %>
+    <% }); %>
+  </ul>
+  
+  <li class="navigation__item navigation__cart">
+    <span>Cart</span>
+    <img
+      class="navigation__cart"
+      src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/shopping-cart.svg"
+      alt="Cart"
+    />
+    <span class="navigation__badge"><%= cartCount %></span>
+  </li>
+  
+  <div class="form__group">
+    <label class="form__label" for="price">Price</label>
+    <input id="price" class="form__input" type="number" step="0.01" name="price" />
+  </div>
+  
